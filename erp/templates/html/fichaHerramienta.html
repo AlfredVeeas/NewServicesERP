@@ -1,0 +1,51 @@
+{% extends 'html/base.html' %}
+
+{% block title %}
+  Ficha de Herramientas
+{% endblock %}
+
+{% block module_styles %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/stylesherramientas.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/stylesBase.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <h1>Ficha de Herramientas</h1>
+  <div class="imagen-container">
+    <img src="{% static 'images/lineaRoja.png' %}" alt="Linea Roja" />
+  </div>
+  <div class="section">
+    <h1>Ficha de Herramienta</h1>
+    <div class="imagen-container">
+        <img src="BarraRoja.png" alt="Barra Roja">
+    </div>
+    <!-- Formulario -->
+    <div class="section">
+        <form action="" method="post">
+          {% csrf_token %}
+            <h3>Marca de Herramienta</h3>
+            <input type="text" name="marca" class="textbox" placeholder="Marca de Herramienta" required>
+
+            <h3>Fecha de Compra de Herramienta</h3>
+            <input type="date" name="fecha_ingreso" class="textbox" id="fechaIngresoHerramienta" required>
+
+            <h3>Modelo de la Herramienta</h3>
+            <input type="text" name="modelo" class="textbox" placeholder="Modelo de Herramienta" required>
+
+            <h3>Cantidad de Herramientas</h3>
+            <input type="number" name="cantidad_herramientas" class="textbox" placeholder="Cantidad de Herramientas" required>
+
+            <h3>Tipo de Herramienta</h3>
+            <select name="tipo_herramienta" class="textbox" id="TipoHerramienta" required>
+                <option value="Manual">Manual</option>
+                <option value="Mecanico">Mecanico</option>
+            </select>
+
+            <br><br>
+            <button type="submit" id="GuardarFicha">Guardar Ficha</button>
+        </form>
+        <script src="scriptHerramientasValidacion.js"></script>
+    </div>
+  </div>
+{% endblock %}

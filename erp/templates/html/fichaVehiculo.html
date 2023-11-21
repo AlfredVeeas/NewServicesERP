@@ -1,0 +1,64 @@
+{% extends 'html/base.html' %}
+
+{% block title %}
+  Ficha de Vehiculo
+{% endblock %}
+
+{% block module_styles %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/stylesvehiculo.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/stylesBase.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <h1>Ficha de Vehiculo</h1>
+  <div class="imagen-container">
+    <img src="{% static 'images/lineaRoja.png' %}" alt="Linea Roja" />
+  </div>
+  <div class="section">
+    <h1>Ficha de Vehiculo</h1>
+    <div class="imagen-container">
+        <img src="BarraRoja.png" alt="Barra Roja">
+    </div>
+        <!-- Formulario -->
+    <div class="section">
+        <form action="" method="post">
+          {% csrf_token %}
+            <h3>Marca de Vehiculo</h3>
+            <input type="text" name="marca" class="textbox" placeholder="Marca de Vehiculo" required>
+
+            <h3>Fecha Ingreso de vehiculo</h3>
+            <input type="date" name="fecha_ingreso" class="textbox" id="fechaIngresoVehiculo" required>
+
+            <h3>Modelo del vehiculo</h3>
+            <input type="text" name="modelo" class="textbox" placeholder="Modelo del vehiculo" required>
+            <input type="text" name="patente" class="textbox" placeholder="Patente" required>
+            <script src="scriptpatente.js"></script>
+
+            <h3>Chasis del vehiculo</h3>
+            <input type="text" name="chasis" class="textbox" placeholder="Chasis del vehiculo" required>
+
+            <h3>Tipo de Vehiculo</h3>
+            <select name="tipo_vehiculo" class="textbox" id="TipoVehiculo" required>
+                <option value="" selected disabled>Seleccione un tipo</option>
+                <option value="Auto">Auto</option>
+                <option value="Camioneta">Camioneta</option>
+                <option value="Furgon">Furgon</option>
+                <option value="Camion">Camion</option>
+            </select>
+
+            <h3>Tipo de Combustible</h3>
+            <select name="tipo_combustible" class="textbox" id="TipoCombustible" required>
+                <option value="" selected disabled>Seleccione un tipo</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Bencinero">Bencinero</option>
+            </select>
+
+            <br><br>
+            <button type="submit" id="GuardarFicha">Guardar Ficha</button>
+        </form>
+
+        <script src="scriptvehiculosValidacion.js"></script>
+    </div>
+
+{% endblock %}

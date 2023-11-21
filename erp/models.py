@@ -62,4 +62,78 @@ class FichaNavio(models.Model):
     def __str__(self):
         return self.Nave
     
-#----------------------TABLA DE FICHA PERSONAL-----------------------------------------------------------------------------    
+#----------------------TABLA DE FICHA Vehiculos-----------------------------------------------------------------------------   
+# 
+class FichaVehiculo(models.Model):
+    TIPO_VEHICULO_CHOICES = [
+        ('', 'Seleccione un tipo de vehículo'),
+        ('Auto', 'Auto'),
+        ('Camioneta', 'Camioneta'),
+        ('Furgon', 'Furgon'),
+        ('Camion', 'Camion'),
+    ]
+
+    TIPO_COMBUSTIBLE_CHOICES = [
+        ('', 'Seleccione un tipo de combustible'),
+        ('Diesel', 'Diesel'),
+        ('Bencinero', 'Bencinero'),
+    ]
+
+    marca = models.CharField(max_length=255)  # Cambiado a CharField para texto
+    fecha_ingreso = models.DateField()
+    modelo = models.CharField(max_length=255)
+    patente = models.CharField(max_length=10)  # Ajusta la longitud según sea necesario
+    chasis = models.CharField(max_length=255)
+    tipo_vehiculo = models.CharField(max_length=50, choices=TIPO_VEHICULO_CHOICES)
+    tipo_combustible = models.CharField(max_length=50, choices=TIPO_COMBUSTIBLE_CHOICES)
+
+    def __str__(self):
+        return f'{self.marca} - {self.modelo} - {self.patente}'
+
+
+#----------------------TABLA DE FICHA Quimico-----------------------------------------------------------------------------    
+class FichaQuimico(models.Model):
+    TIPO_QUIMICO_CHOICES = [
+        ('OCN 01', 'OCN 01'),
+        ('OCN 08', 'OCN 08'),
+        ('Acido Clorhídrico', 'Acido Clorhídrico'),
+        ('Hipoclorito', 'Hipoclorito'),
+        ('Hold Coat', 'Hold Coat'),
+    ]
+
+    CAPACIDAD_BIN_CHOICES = [
+        ('Lleno', 'Lleno (1000 lts) aprox'),
+        ('Medio', 'Medio (500 lts) aprox'),
+    ]
+
+    LUGAR_ALMACENAMIENTO_CHOICES = [
+        ('Taller', 'Taller'),
+        ('Container', 'Container'),
+    ]
+
+    tipo_quimico = models.CharField(max_length=50, choices=TIPO_QUIMICO_CHOICES, default='OCN 01')
+    fecha_registro = models.DateField()
+    capacidad_bines = models.CharField(max_length=255, default='Lleno (1000 lts) aprox')
+    lugar_almacenamiento = models.CharField(max_length=255, default='Taller')
+
+    def __str__(self):
+        return f'{self.tipo_quimico} - {self.fecha_registro}'
+    
+    #----------------------TABLA DE FICHA HERRAMIENTAS-----------------------------------------------------------------------------    
+class FichaHerramientas(models.Model):
+    marca = models.CharField(max_length=255)
+    fecha_ingreso = models.DateField()
+    modelo = models.CharField(max_length=255)
+    cantidad_herramientas = models.IntegerField()
+    
+    TIPO_HERRAMIENTA_CHOICES = [
+        ('Manual', 'Manual'),
+        ('Mecanico', 'Mecanico'),
+        # Agrega otros tipos según sea necesario
+    ]
+    
+    tipo_herramienta = models.CharField(max_length=50, choices=TIPO_HERRAMIENTA_CHOICES)
+
+    def __str__(self):
+        return f'{self.marca} - {self.modelo} - Cantidad: {self.cantidad_herramientas}'
+
